@@ -15,12 +15,13 @@
         android:layout_marginTop="16dp"
         android:textSize="32sp"/>
 
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tasksText"
         xmlns:app="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
