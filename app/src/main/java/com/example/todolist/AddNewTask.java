@@ -59,9 +59,14 @@ public class AddNewTask extends BottomSheetDialogFragment {
             isUpdate = true;
             String task = bundle.getString("task");
             newTaskText.setText(task);
+            assert task != null;
             if (task.length()>0)
                 newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
         }
+
+        db = new DatabaseHandler(getActivity());
+        db.openDatabase();
+
         newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,7 +90,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
             }
         });
-        boolean finalIsUpdate = isUpdate;
+        final boolean finalIsUpdate = isUpdate;
         newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -97,6 +102,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                                 ToDoModel task = new ToDoModel();
                                 task.setTask(text);
                                 task.setStatus(0);
+                                db.insertTask(task);
                             }
                             dismiss();
                         }
